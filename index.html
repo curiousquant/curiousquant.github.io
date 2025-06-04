@@ -29,7 +29,7 @@
     </style>
 </head>
 
-<body>
+<body onload="loadPage()">
    <h1>Sermons</h1>
    <p id="sermon_text">text</p>
    <ul id="links">
@@ -87,12 +87,16 @@
         }
         renderLinks();
         
-        const queryString = window.location.search;
-        console.log(queryString);
-        const urlParams = new URLSearchParams(queryString);
-        const textid = urlParams.get('text')
-        console.log(textid);    
-        renderText(textid);
+        
+
+        function loadPage(){
+            const queryString = window.location.search;
+            console.log(queryString);
+            const urlParams = new URLSearchParams(queryString);
+            const textid = urlParams.get('text')
+            console.log(textid);    
+            renderText(textid);
+        }
     </script>
 </footer>
 </html>
