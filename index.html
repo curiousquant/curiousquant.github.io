@@ -75,7 +75,7 @@
                     const linkNum=i+1;
                     const h2 = document.getElementById("link"+i);
                     //let html = "<li id=link"+linkNum+">"+i+"</li>";
-                    let html = "<li id=link"+linkNum+"><a href=\"/"+i+"\">"+i+"</a></li>";
+                    let html = "<li id=link"+linkNum+"><a href=\"/?text="+i+"\">"+i+"</a></li>";
                     h2.insertAdjacentHTML("afterend", html); 
                 }
             }
@@ -90,8 +90,9 @@
         const queryString = window.location.search;
         console.log(queryString);
         const urlParams = new URLSearchParams(queryString);
-        const product = urlParams.get('product')
-        console.log(product);    
+        const textid = urlParams.get('text')
+        console.log(textid);    
+        renderText(textid);
     </script>
 </footer>
 </html>
