@@ -27,6 +27,11 @@
             width: 150px;
         }
     </style>
+    <script>
+        const str = {text:""};
+        const myJSON = JSON.stringify(str);
+        console.log(myJSON);
+    </script>
 </head>
 
 <body onload="loadPage()">
@@ -41,7 +46,9 @@
         async function fetchText(){
             try{
                 const response = await fetch('https://raw.githubusercontent.com/curiousquant/curiousquant.github.io/refs/heads/main/sample.json');
+                console.log(response);
                 const text = await response.json();
+                
                 return text;
             }
             catch(error){
@@ -66,7 +73,7 @@
                 console.log(error);
             }
         }
-        renderText(1);
+        //renderText(1);
         async function renderLinks(){
             try{
                 const length = await renderLength();
@@ -84,7 +91,7 @@
 
         
         }
-        renderLinks();
+       
         
         
 
@@ -93,9 +100,29 @@
             console.log(queryString);
             const urlParams = new URLSearchParams(queryString);
             const textid = urlParams.get('text')
-            console.log(textid);    
-            renderText(textid);
+            console.log(textid);
+            if(textid==null){
+                renderText(1); 
+                console.log("abc");
+            }
+            else{
+                renderText(textid);
+            }    
+            
         }
+        renderLinks();
+
+
+
+
+
+
+
+        
+
+
+
+
     </script>
 </footer>
 </html>
