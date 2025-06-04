@@ -29,12 +29,12 @@
                 console.log(error);
             }
         }
-        async function renderText(){
+        async function renderText(id){
             const value = await fetchText();
             console.log(value[0]);
-            document.getElementById("sermon_text").innerHTML=value[0].text;
+            document.getElementById("sermon_text").innerHTML=value[id].text;
         }
-        renderText();
+        renderText(1);
         const h2 = document.getElementById("sermon_text");
         console.log(document.getElementById("sermon_text").innerHTML);
         let html = "<a href=\"/1\">1</a>";
