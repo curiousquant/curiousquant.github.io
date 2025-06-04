@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sermons by JMun">
+    <meta name="keywords" content="HTML, Template, Header">
+    <meta name="author" content="JMun">
+    <title>Sermons</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Optional favicon -->
+    <!-- Add any additional meta tags or external resources here -->
+    <script>
+        fetch('sample.json')
+            .then(response => response.json()) // Parse JSON
+            .then(data => console.log(data)) // Work with JSON data
+            .catch(error => console.error('Error fetching JSON:', error));
+            
+        document.getElementById("sermon_text").innerHTML="";
+    </script>
+</head>
+
+<body>
+   <h1>Sermons</h1>
+   <p id="sermon_text">text</p>
+</body>
+
+</html>
