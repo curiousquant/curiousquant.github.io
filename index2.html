@@ -57,14 +57,16 @@
         
         async function fetchText(id){
             try{
-                const length = fetchNumOfText();
                 const data = await fetchMetadata();
-                const title = data[id].title;
+                const length = data.length;
+                
+                const title = data[id].text.title;
+                console.log(title);
                 const url = "https://raw.githubusercontent.com/curiousquant/curiousquant.github.io/refs/heads/main/";
                 
                 const response = await fetch(url+title+".txt");
                 
-                const text = await response.json();
+                const text = await response.text();
                 console.log(text);
                 return text;
             }
@@ -72,12 +74,17 @@
                 console.log(error);
             }
         }
-        fetchText(1);
+        
         async function renderText(id){
             try{
-                const value = await fetchText();
-                document.getElementById("date").innerHTML=value[id].text.date;
-                document.getElementById("sermon_text").innerHTML=value[id].text.sermon;
+                const metaData = await fetchMetadata();
+                const date = metaData[id].text.date;
+
+                const value = await fetchText(id);
+
+                console.log(value);
+                document.getElementById("date").innerHTML=date;
+                document.getElementById("sermon_text").innerHTML=value;
             }
             catch(error){
                 console.log(error);
@@ -86,8 +93,8 @@
         //renderText(1);
         async function renderLinks(){
             try{
-
-                const length = await fetchNumOfText();
+                const metadata = await fetchMetadata();
+                const length = metadata.length;
                 for (let i =0;i<length;i++) {
                     const linkNum=i+1;
                     const h2 = document.getElementById("link"+i);
