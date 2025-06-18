@@ -41,32 +41,11 @@
 </body>
 <footer>
     <script>
-        async function fetchMetadata(){
+        async function fetchText(){
             try{
-                const url = "https://raw.githubusercontent.com/curiousquant/curiousquant.github.io/refs/heads/main/";
-                const response = await fetch(url+"metadata.json");
+                const response = await fetch('https://raw.githubusercontent.com/curiousquant/curiousquant.github.io/refs/heads/main/sample_copy.json');
                 
-                const data = await response.json();
-                console.log(data);
-                return data;
-            }
-            catch(error){
-                console.log(error);
-            }
-        }
-        
-        async function fetchText(id){
-            try{
-                const data = await fetchMetadata();
-                const length = data.length;
-                
-                const title = data[id].text.title;
-                console.log(title);
-                const url = "https://raw.githubusercontent.com/curiousquant/curiousquant.github.io/refs/heads/main/";
-                
-                const response = await fetch(url+title+".txt");
-                
-                const text = await response.text();
+                const text = await response.json();
                 console.log(text);
                 return text;
             }
@@ -74,17 +53,20 @@
                 console.log(error);
             }
         }
-        
+        async function renderLength(){
+            try{
+                const value = await fetchText();
+                return value.length;
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
         async function renderText(id){
             try{
-                const metaData = await fetchMetadata();
-                const date = metaData[id].text.date;
-
-                const value = await fetchText(id);
-
-                console.log(value);
-                document.getElementById("date").innerHTML=date;
-                document.getElementById("sermon_text").innerHTML=value;
+                const value = await fetchText();
+                document.getElementById("date").innerHTML=value[id].text.date;
+                document.getElementById("sermon_text").innerHTML=value[id].text.sermon;
             }
             catch(error){
                 console.log(error);
@@ -93,8 +75,7 @@
         //renderText(1);
         async function renderLinks(){
             try{
-                const metadata = await fetchMetadata();
-                const length = metadata.length;
+                const length = await renderLength();
                 for (let i =0;i<length;i++) {
                     const linkNum=i+1;
                     const h2 = document.getElementById("link"+i);
