@@ -79,7 +79,6 @@
             try{
                 const metaData = await fetchMetadata();
                 const date = metaData[id].text.date;
-
                 const value = await fetchText(id);
 
                 console.log(value);
@@ -113,20 +112,40 @@
         
         
 
-        function loadPage(){
+        async function loadPage(){
+            try{
+            const metaData = await fetchMetadata();
+            const length = metaData.length;
+
             const queryString = window.location.search;
             console.log(queryString);
             const urlParams = new URLSearchParams(queryString);
             const textid = urlParams.get('text')
             console.log(textid);
             if(textid==null){
-                renderText(0); 
-                console.log("abc");
+                let zero = 0;
+                for(let i=0;i<length;i++){
+                    if(metaData[i].text.id==0){
+                        zero = i;
+                    }
+                }
+                console.log(zero);
+                renderText(zero); 
+                
             }
             else{
-                renderText(textid);
+                let index = 0;
+                for(let i=0;i<length;i++){
+                    if(metaData[i].text.id==textid){
+                        index = i;
+                    }
+                }
+                renderText(index);
             }    
-            
+            }
+            catch(e){
+                console.log(e);
+            }
         }
         renderLinks();
 
