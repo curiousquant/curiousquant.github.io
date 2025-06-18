@@ -41,26 +41,28 @@
 </body>
 <footer>
     <script>
-        async function fetchNumOfText(){
+        async function fetchMetadata(){
             try{
-                url = "https://raw.githubusercontent.com/curiousquant/curiousquant.github.io/refs/heads/main/";
+                const url = "https://raw.githubusercontent.com/curiousquant/curiousquant.github.io/refs/heads/main/";
                 const response = await fetch(url+"metadata.json");
                 
-                const text = await response.json();
-                console.log(text.length);
-                return text;
+                const data = await response.json();
+                console.log(data);
+                return data;
             }
             catch(error){
                 console.log(error);
             }
         }
-        fetchNumOfText();
+        
         async function fetchText(id){
             try{
-                length = fetchNumOfText();
-                url = "https://raw.githubusercontent.com/curiousquant/curiousquant.github.io/refs/heads/main/";
+                const length = fetchNumOfText();
+                const data = await fetchMetadata();
+                const title = data[id].title;
+                const url = "https://raw.githubusercontent.com/curiousquant/curiousquant.github.io/refs/heads/main/";
                 
-                const response = await fetch(url+id+".txt");
+                const response = await fetch(url+title+".txt");
                 
                 const text = await response.json();
                 console.log(text);
@@ -70,6 +72,7 @@
                 console.log(error);
             }
         }
+        await fetchText(1);
         async function renderText(id){
             try{
                 const value = await fetchText();
