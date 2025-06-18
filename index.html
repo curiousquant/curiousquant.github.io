@@ -122,7 +122,7 @@
             const urlParams = new URLSearchParams(queryString);
             const textid = urlParams.get('text')
             console.log(textid);
-            if(textid==null){
+            if(textid==null || textid>(length-1)){
                 let zero = 0;
                 for(let i=0;i<length;i++){
                     if(metaData[i].text.id==0){
