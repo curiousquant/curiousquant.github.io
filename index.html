@@ -32,8 +32,8 @@
 
 <body onload="loadPage()">
    <h1>Sermons</h1>
-   <p id="date">date</p>
-   <p id="sermon_text">text</p>
+   <p id="date"></p>
+   <p id="sermon_text"></p>
    <ul id="links">
         <li >index</li>
         <li id="link0"></li>
@@ -63,7 +63,7 @@
                 const title = data[id].text.title;
                 console.log(title);
                 const url = "https://raw.githubusercontent.com/curiousquant/curiousquant.github.io/refs/heads/main/sermons/";
-                
+                             
                 const response = await fetch(url+title+".txt");
                 
                 const text = await response.text();
