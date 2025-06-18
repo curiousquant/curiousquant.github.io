@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sermons by JMun">
+    <meta name="keywords" content="HTML, Template, Header">
+    <meta name="author" content="JMun">
+    <title>Sermons</title>
+    <!-- <link rel="stylesheet" href="styles.css"> Link to your CSS file -->
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> Optional favicon -->
+    <!-- Add any additional meta tags or external resources here -->
+    <style>
+        body {
+            font-family: Georgia, Helvetica, sans-serif;
+        }
+        p {
+        margin-left: 20px;
+        margin-right: 20px;
+        white-space: pre-wrap;
+        }
+        li{
+            display: inline;
+            margin-right: 3px;
+        }
+        img{
+            width: 150px;
+        }
+    </style>
+    <img src="cross.jpeg"/>
+</head>
+
+<body onload="loadPage()">
+   <h1>Sermons</h1>
+   <p id="date">date</p>
+   <p id="sermon_text">text</p>
+   <ul id="links">
+        <li >index</li>
+        <li id="link0"></li>
+   </ul>
+</body>
+<footer>
+    <script>
+        async function fetchText(){
+            try{
+                const response = await fetch('https://raw.githubusercontent.com/curiousquant/curiousquant.github.io/refs/heads/main/sample_copy.json');
+                
+                const text = await response.json();
+                console.log(text);
+                return text;
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+        async function renderLength(){
+            try{
+                const value = await fetchText();
+                return value.length;
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+        async function renderText(id){
+            try{
+                const value = await fetchText();
+                document.getElementById("date").innerHTML=value[id].text.date;
+                document.getElementById("sermon_text").innerHTML=value[id].text.sermon;
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+        //renderText(1);
+        async function renderLinks(){
+            try{
+                const length = await renderLength();
+                for (let i =0;i<length;i++) {
+                    const linkNum=i+1;
+                    const h2 = document.getElementById("link"+i);
+                    //let html = "<li id=link"+linkNum+">"+i+"</li>";
+                    let html = "<li id=link"+linkNum+"><a href=\"/?text="+i+"\">"+i+"</a></li>";
+                    h2.insertAdjacentHTML("afterend", html); 
+                }
+            }
+            catch(error){
+                console.log(error);
+            }
+
+        
+        }
+       
+        
+        
+
+        function loadPage(){
+            const queryString = window.location.search;
+            console.log(queryString);
+            const urlParams = new URLSearchParams(queryString);
+            const textid = urlParams.get('text')
+            console.log(textid);
+            if(textid==null){
+                renderText(0); 
+                console.log("abc");
+            }
+            else{
+                renderText(textid);
+            }    
+            
+        }
+        renderLinks();
+
+
+
+
+
+
+
+        
+
+
+
+
+    </script>
+</footer>
+</html>
