@@ -1,0 +1,63 @@
+<html>
+    <style>
+        .menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        }
+        .menu > li {
+            position: relative;
+            padding: 10px;
+            display:inline-block;
+            cursor: pointer;
+        }
+        .submenu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        
+        display: none; /* Initially hidden */
+        background: #ffffff;
+        border: 1px solid #ccc;
+        }
+        .submenu > li {
+        padding: 2px;
+        cursor: pointer;
+        }
+        .submenu > li:hover {
+        background: #e0e0e0;
+        
+        }
+        .menu > li:hover .submenu {
+        display: list-item;
+        }
+    </style>
+    <body>
+        <nav >
+        <ul class="menu">
+            <li >
+                <a href="https://jguy2591.github.io">home</a>
+                <ul class="submenu">
+                    <li><a href="https://jguy2591.github.io">our story</a></li>
+                    <li><a href="https://jguy2591.github.io">our story</a></li>
+                </ul>
+            </li>
+            <li >
+                <a href="https://jguy2591.github.io">home</a>
+                <ul class="submenu">
+                    <li><a href="https://jguy2591.github.io">our story</a></li>
+                    <li><a href="https://jguy2591.github.io">our story</a></li>
+                </ul>
+            </li>
+            <li >
+                <a href="https://jguy2591.github.io">home</a>
+                <ul class="submenu">
+                    <li><a href="https://jguy2591.github.io">our story</a></li>
+                    <li><a href="https://jguy2591.github.io">our story</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    </body>
+</html>
