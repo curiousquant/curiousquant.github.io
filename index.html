@@ -43,7 +43,7 @@
     <script>
         async function fetchMetadata(){
             try{
-                const url = "https://raw.githubusercontent.com/curiousquant/curiousquant.github.io/refs/heads/main/";
+                const url = "./";
                 const response = await fetch(url+"metadata.json");
                 
                 const data = await response.json();
@@ -62,7 +62,7 @@
                 
                 const title = data[id].text.title;
                 console.log(title);
-                const url = "https://raw.githubusercontent.com/curiousquant/curiousquant.github.io/refs/heads/main/sermons/";
+                const url = "./sermons/";
                              
                 const response = await fetch(url+title+".txt");
                 
