@@ -216,6 +216,7 @@
                 for(let i=0;i<length;i++){
                     if(metaData[i].text.id==0){
                         zero = i;
+                        minlink=1;
                     }
                 }
                 console.log(zero);
@@ -227,6 +228,7 @@
                 for(let i=0;i<length;i++){
                     if(metaData[i].text.id==textid){
                         index = i;
+                        minklink=textid;
                     }
                 }
                 renderText(index);
