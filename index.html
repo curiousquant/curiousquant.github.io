@@ -197,16 +197,16 @@
                 document.getElementById("link"+i).style.display="none";
                 
             }
-            if(incre+minlink<=length){
-                for(let i=minlink;i<incre+minlink;i++){
-                    //document.getElementById("link"+i).classList.remove("vishidden");
-                    console.log(i);
-                    console.log(document.getElementById("link"+i).getHTML());
-                    document.getElementById("link"+i).style.display="inline";
-                    
-                    
-                }
+            
+            for(let i=minlink;(i<incre+minlink)&&(incre+minlink<=length);i++){
+                //document.getElementById("link"+i).classList.remove("vishidden");
+                console.log(i);
+                console.log(document.getElementById("link"+i).getHTML());
+                document.getElementById("link"+i).style.display="inline";
+                
+                
             }
+            
             
         }
         catch(error){
