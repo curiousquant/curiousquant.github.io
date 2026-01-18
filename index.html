@@ -87,7 +87,7 @@
                 console.log(value);
                 document.getElementById("date").innerHTML=date;
                 document.getElementById("sermon_text").innerHTML=value;
-                hideLinks();
+                
             }
             catch(error){
                 console.log(error);
@@ -188,6 +188,7 @@
             //const length = metadata.length;
             const length = 10;
             const incre=5;
+            console.log("minlink"+minlink);
             for(let i=minlink;i<=length;i++){
                         //document.getElementById("link"+i).classList.add("vishidden");
                 document.getElementById("link"+i).style.display="none";
@@ -217,6 +218,7 @@
                     if(metaData[i].text.id==0){
                         zero = i;
                         minlink=1;
+                        renderLinks();
                         intializeLinks()
                     }
                 }
@@ -230,6 +232,7 @@
                     if(metaData[i].text.id==textid){
                         index = i;
                         minlink=textid;
+                        renderLinks();
                         intializeLinks()
                     }
                 }
@@ -241,7 +244,7 @@
                 console.log(e);
             }
         }
-        renderLinks();
+        
 
 
 
