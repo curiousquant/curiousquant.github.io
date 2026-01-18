@@ -191,7 +191,7 @@
             const incre=5;
             console.log("minlink"+minlink);
            
-            console.log(document.getElementById("link"+i).style.getPropertyValue);
+            
             for(let i=1;i<=length;i++){
                         //document.getElementById("link"+i).classList.add("vishidden");
                 document.getElementById("link"+i).style.display="none";
@@ -199,7 +199,7 @@
             }
             for(let i=minlink;i<=incre+minlink;i++){
                 //document.getElementById("link"+i).classList.remove("vishidden");
-                
+                console.log(document.getElementById("link"+i).style.getPropertyValue);
                 document.getElementById("link"+i).style.display="inline";
                 
                 
