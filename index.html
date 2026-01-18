@@ -96,10 +96,10 @@
         //renderText(1);
         async function moveLeft(){
             try{
-                //const metadata = await fetchMetadata();
-                //const length = metadata.length;
+                const metadata = await fetchMetadata();
+                const length = metadata.length;
 
-                const length=10;
+                //const length=10;
                 const incre = 5;
                 if(minlink>1){
                     minlink=minlink-1;
@@ -124,9 +124,9 @@
         }
         async function moveRight(){
             try{
-                //const metadata = await fetchMetadata();
-                //const length = metadata.length;
-                const length =10;
+                const metadata = await fetchMetadata();
+                const length = metadata.length;
+                //const length =10;
                 const incre =5;
                 if(minlink+incre<length){
                    minlink=minlink+1;
@@ -151,11 +151,11 @@
             }
         }
         async function renderLinks(){
-            try{
-                
-                //const metadata = await fetchMetadata();
-                //const length = metadata.length;
-                const length = 10;
+            try
+            
+                const metadata = await fetchMetadata();
+                const length = metadata.length;
+               // const length = 10;
                 const leftarrow = "<li id=leftarrow>&larr;</li>";
                 const rightarrow = "<li id=rightarrow>&rarr;</li>";
                 const h2 = document.getElementById("link0");
@@ -172,7 +172,7 @@
                 }
                 h2.insertAdjacentHTML("afterend", leftarrow); 
                 document.getElementById("leftarrow").addEventListener("click",moveLeft);
-               intializeLinks();
+               intializeLinks(1);
                 
             }
             catch(error){
@@ -183,18 +183,19 @@
         }
        
         
-        async function intializeLinks(){
-            //const metadata = await fetchMetadata();
-            //const length = metadata.length;
-            const length = 10;
+        async function intializeLinks(start){
+            const metadata = await fetchMetadata();
+            const length = metadata.length;
+           // const length = 10;
             const incre=5;
             console.log("minlink"+minlink);
-            for(let i=minlink;i<=length;i++){
+            console.log("start"+start);
+            for(let i=1;i<=length;i++){
                         //document.getElementById("link"+i).classList.add("vishidden");
                 document.getElementById("link"+i).style.display="none";
                 
             }
-            for(let i=minlink;i<=incre+minlink;i++){
+            for(let i=start;i<=incre+start;i++){
                 //document.getElementById("link"+i).classList.remove("vishidden");
                 document.getElementById("link"+i).style.display="inline";
                 
@@ -218,8 +219,8 @@
                     if(metaData[i].text.id==0){
                         zero = i;
                         minlink=1;
-                        
-                        intializeLinks()
+                        console.log("start")
+                        intializeLinks(1)
                     }
                 }
                 console.log(zero);
@@ -233,7 +234,8 @@
                         index = i;
                         minlink=textid;
                         console.log("textid"+textid);
-                        intializeLinks()
+                        intializeLinks(textid)
+
                     }
                 }
                 renderText(index);
