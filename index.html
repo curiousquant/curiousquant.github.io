@@ -11,6 +11,7 @@
     <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> Optional favicon -->
     <!-- Add any additional meta tags or external resources here -->
     <style>
+        
         body {
             font-family: Georgia, Helvetica, sans-serif;
         }
@@ -25,6 +26,14 @@
         }
         img{
             width: 150px;
+        }
+        visnothidden{
+            visibility: visible;
+        }
+        vishidden{
+
+            visibility: hidden;
+        
         }
     </style>
     <a href="/"><img src="cross.jpeg"/> </a>
@@ -90,15 +99,28 @@
             }
         }
         //renderText(1);
+        async function hideLinks(){
+            try{
+                const metadata = await fetchMetadata();
+                const length = metadata.length;
+                for(let i=0;i<length;i++){
+                    document.getElementById("link"+i).setAttribute("class","vishidden");
+                }
+            }
+            catch(error){
+                console.log("hidden error");
+            }
+        }
         async function renderLinks(){
             try{
                 const metadata = await fetchMetadata();
                 const length = metadata.length;
                 for (let i =0;i<length;i++) {
                     const linkNum=i+1;
+                    let html = "<li id=link"+linkNum+"><a href=\"/?text="+i+"\">"+i+"</a></li>";
+                    
                     const h2 = document.getElementById("link"+i);
                     //let html = "<li id=link"+linkNum+">"+i+"</li>";
-                    let html = "<li id=link"+linkNum+"><a href=\"/?text="+i+"\">"+i+"</a></li>";
                     h2.insertAdjacentHTML("afterend", html); 
                 }
             }
