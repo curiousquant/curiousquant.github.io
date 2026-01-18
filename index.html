@@ -197,8 +197,8 @@
                 document.getElementById("link"+i).style.display="none";
                 
             }
-            
-            for(let i=minlink;(i<incre+minlink)&&(i<=length);i++){
+            let limit = incre+minlink;
+            for(let i=minlink;(i<limit)&&(i<=length);i++){
                 //document.getElementById("link"+i).classList.remove("vishidden");
                 console.log(i+"+"+incre+minlink);
                 console.log(document.getElementById("link"+i).getHTML());
