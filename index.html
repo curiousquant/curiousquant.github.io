@@ -184,6 +184,7 @@
        
         
         async function intializeLinks(start){
+            try{
             const metadata = await fetchMetadata();
             const length = metadata.length;
            // const length = 10;
@@ -201,6 +202,10 @@
                 
                 
             }
+        }
+        catch(error){
+            console.log(error);
+        }
         }
 
         async function loadPage(){
@@ -220,6 +225,7 @@
                         zero = i;
                         minlink=1;
                         console.log("start")
+                        renderLinks();
                         intializeLinks(1)
                     }
                 }
@@ -234,6 +240,7 @@
                         index = i;
                         minlink=textid;
                         console.log("textid"+textid);
+                        renderLinks();
                         intializeLinks(textid)
 
                     }
@@ -248,7 +255,7 @@
             }
         }
         
-renderLinks();
+
 
 
 
