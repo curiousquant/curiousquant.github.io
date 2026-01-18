@@ -218,7 +218,7 @@
                     if(metaData[i].text.id==0){
                         zero = i;
                         minlink=1;
-                        renderLinks();
+                        
                         intializeLinks()
                     }
                 }
@@ -232,11 +232,12 @@
                     if(metaData[i].text.id==textid){
                         index = i;
                         minlink=textid;
-                        renderLinks();
+                        console.log("textid"+textid);
                         intializeLinks()
                     }
                 }
                 renderText(index);
+                
             }    
             
             }
@@ -245,7 +246,7 @@
             }
         }
         
-
+renderLinks();
 
 
 
