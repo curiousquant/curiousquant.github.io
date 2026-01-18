@@ -27,14 +27,7 @@
         img{
             width: 150px;
         }
-        visnothidden{
-            visibility: visible;
-        }
-        vishidden{
-
-            visibility: hidden;
         
-        }
     </style>
     <a href="/"><img src="cross.jpeg"/> </a>
 </head>
@@ -50,6 +43,7 @@
 </body>
 <footer>
     <script>
+        var minlink=1;
         async function fetchMetadata(){
             try{
                 const url = "./";
@@ -100,30 +94,86 @@
             }
         }
         //renderText(1);
-        async function hideLinks(){
+        async function moveLeft(){
             try{
                 const metadata = await fetchMetadata();
                 const length = metadata.length;
-                for(let i=0;i<length;i++){
-                    document.getElementById("link"+i).setAttribute("class","vishidden");
+
+                //const length=10;
+                const incre = 5;
+                if(minlink>1){
+                    minlink=minlink-1;
+                    for(let i=1;i<=length;i++){
+                        //document.getElementById("link"+i).classList.add("vishidden");
+                        document.getElementById("link"+i).style.display="none";
+                        
+                    }
+                    for(let i=minlink;i<=minlink+incre;i++){
+                        //document.getElementById("link"+i).classList.remove("vishidden");
+                        document.getElementById("link"+i).style.display="inline";
+                        
+                        
+                    }
                 }
+                
+
             }
             catch(error){
-                console.log("hidden error");
+                console.log(error);
+            }
+        }
+        async function moveRight(){
+            try{
+                const metadata = await fetchMetadata();
+                const length = metadata.length;
+                //const length =10;
+                const incre =5;
+                if(minlink+incre<length){
+                   minlink=minlink+1;
+                    console.log(minlink);
+                    for(let i=1;i<=length;i++){
+                        //document.getElementById("link"+i).classList.add("vishidden");
+                        document.getElementById("link"+i).style.display="none";
+                        
+                    }
+                    for(let i=minlink;i<=minlink+incre;i++){
+                        
+                        //document.getElementById("link"+i).classList.remove("vishidden");
+                        document.getElementById("link"+i).style.display="inline";
+                        console.log(i+"+"+minlink);
+                    }
+                }
+                console.log("--------");
+
+            }
+            catch(error){
+                console.log(error);
             }
         }
         async function renderLinks(){
             try{
+                
                 const metadata = await fetchMetadata();
                 const length = metadata.length;
+                //const length = 10;
+                const leftarrow = "<li id=leftarrow>&larr;</li>";
+                const rightarrow = "<li id=rightarrow>&rarr;</li>";
+                const h2 = document.getElementById("link0");
+                h2.insertAdjacentHTML("afterend", rightarrow); 
+                document.getElementById("rightarrow").addEventListener("click",moveRight);
                 for (let i =0;i<length;i++) {
                     const linkNum=i+1;
-                    let html = "<li id=link"+linkNum+"><a href=\"/?text="+i+"\">"+i+"</a></li>";
                     
                     const h2 = document.getElementById("link"+i);
+                    let html = "<li id=link"+linkNum+"><a href=\"/?text="+i+"\">"+i+"</a></li>";
+                    
                     //let html = "<li id=link"+linkNum+">"+i+"</li>";
                     h2.insertAdjacentHTML("afterend", html); 
                 }
+                h2.insertAdjacentHTML("afterend", leftarrow); 
+                document.getElementById("leftarrow").addEventListener("click",moveLeft);
+               intializeLinks();
+                
             }
             catch(error){
                 console.log(error);
@@ -133,7 +183,23 @@
         }
        
         
-        
+        async function intializeLinks(){
+            const metadata = await fetchMetadata();
+            const length = metadata.length;
+            //const length = 10;
+            const incre=5;
+            for(let i=1;i<=length;i++){
+                        //document.getElementById("link"+i).classList.add("vishidden");
+                document.getElementById("link"+i).style.display="none";
+                
+            }
+            for(let i=1;i<=incre+1;i++){
+                //document.getElementById("link"+i).classList.remove("vishidden");
+                document.getElementById("link"+i).style.display="inline";
+                
+                
+            }
+        }
 
         async function loadPage(){
             try{
