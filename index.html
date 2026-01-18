@@ -172,7 +172,7 @@
                 }
                 h2.insertAdjacentHTML("afterend", leftarrow); 
                 document.getElementById("leftarrow").addEventListener("click",moveLeft);
-               intializeLinks(1);
+               intializeLinks();
                 
             }
             catch(error){
@@ -183,7 +183,7 @@
         }
        
         
-        async function intializeLinks(start){
+        async function intializeLinks(){
             try{
             const metadata = await fetchMetadata();
             const length = metadata.length;
@@ -191,6 +191,7 @@
             const incre=5;
             console.log("minlink"+minlink);
             console.log("start"+start);
+            console.log(document.getElementById("link"+i).style);
             for(let i=1;i<=length;i++){
                         //document.getElementById("link"+i).classList.add("vishidden");
                 document.getElementById("link"+i).style.display="none";
@@ -198,6 +199,7 @@
             }
             for(let i=minlink;i<=incre+minlink;i++){
                 //document.getElementById("link"+i).classList.remove("vishidden");
+                
                 document.getElementById("link"+i).style.display="inline";
                 
                 
@@ -226,7 +228,7 @@
                         minlink=1;
                         console.log("start")
                         renderLinks();
-                        intializeLinks(1)
+                        intializeLinks()
                     }
                 }
                 console.log(zero);
@@ -241,7 +243,7 @@
                         minlink=textid;
                         console.log("textid"+textid);
                         renderLinks();
-                        intializeLinks(textid)
+                        intializeLinks()
 
                     }
                 }
