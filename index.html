@@ -128,15 +128,15 @@
                 const length = metadata.length;
                 //const length =10;
                 const incre =5;
-                if(minlink+incre<length){
-                   minlink=minlink+1;
+                if(Number(minlink)+incre<length){
+                   minlink=Number(minlink)+1;
                     console.log(minlink);
                     for(let i=1;i<=length;i++){
                         //document.getElementById("link"+i).classList.add("vishidden");
                         document.getElementById("link"+i).style.display="none";
                         
                     }
-                    for(let i=minlink;i<=minlink+incre;i++){
+                    for(let i=Number(minlink);i<=minlink+incre;i++){
                         
                         //document.getElementById("link"+i).classList.remove("vishidden");
                         document.getElementById("link"+i).style.display="inline";
