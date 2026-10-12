@@ -28,6 +28,16 @@
         margin-right: 20px;
         white-space: pre-wrap;
         }
+        th {
+            text-align: left;
+        }
+        a:link {
+          color: red;
+        }
+        
+        a:visited {
+          color: blue;
+        }
         li{
             display: inline;
             margin-right: 3px;
@@ -61,7 +71,7 @@
                     const linkNum=i+1;
                     
                     const title = document.getElementById("title"+i);
-                    let html = "<tr id=title"+linkNum+"><th>"+i+"</th><th ><a href=\"/?text="+i+"\">"+metadata[i].text.title+"</a></th></tr>";
+                    let html = "<tr id=title"+linkNum+"><th>"+i+"</th><th ><a href=\"/?text="+i+"\">"+metadata[metadata[i].text.id].text.title+"</a></th></tr>";
     
                     title.insertAdjacentHTML("afterend", html); 
                 }
