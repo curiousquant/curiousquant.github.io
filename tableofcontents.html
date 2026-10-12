@@ -61,7 +61,7 @@
                     const linkNum=i+1;
                     
                     const title = document.getElementById("title"+i);
-                    let html = "<tr><th>text="+i+"</th><th id=title"+linkNum+"><a href=\"/?text="+i+"\">"+metadata[i].text.title+"</a></th></tr>";
+                    let html = "<tr id=title"+linkNum+"><th>"+i+"</th><th ><a href=\"/?text="+i+"\">"+metadata[i].text.title+"</a></th></tr>";
     
                     title.insertAdjacentHTML("afterend", html); 
                 }
