@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sermons by JMun">
+    <meta name="keywords" content="HTML, Template, Header">
+    <meta name="author" content="JMun">
+    <meta property="og:image"
+    content="https://www.jguy2591.com/cross.jpeg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:secure_url" />
+
+    <meta name="twitter:image"
+    content="https://www.jguy2591.com/cross.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Table of Contents</title>
+    <!-- <link rel="stylesheet" href="styles.css"> Link to your CSS file -->
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> Optional favicon -->
+    <!-- Add any additional meta tags or external resources here -->
+    <style>
+        
+        body {
+            font-family: Georgia, Helvetica, sans-serif;
+        }
+        p {
+        margin-left: 20px;
+        margin-right: 20px;
+        white-space: pre-wrap;
+        }
+        li{
+            display: inline;
+            margin-right: 3px;
+        }
+        img{
+            width: 150px;
+        }
+        
+    </style>
+    <a href="/"><img src="cross.jpeg"/> </a>
+</head>
+<body onload="loadPage()">
+<h1>Sermons</h1>
+
+    <div>
+        <table>
+            <li id="t0">
+
+            </li>
+        </table>
+</div>
+</body>
+
+<script>
+         async function addTitles() {
+            try{
+                const metadata = await fetchMetadata();
+                console.log(metadata);
+                const length = metadata.length;
+                for (let i =0;i<length;i++) {
+                    const linkNum=i+1;
+                    
+                    const t = document.getElementById("t"+i);
+                    let html = "<li id="+t+linkNum+"><a href=\"/?text="+i+"\">"+i+"</a></li>";
+                    
+                    //let html = "<li id=link"+linkNum+">"+i+"</li>";
+                    t.insertAdjacentHTML("afterend", html); 
+                }
+            }
+            catch(error){
+                console.log(error)
+            }
+        }
+
+        async function loadPage(){
+            try{
+                addTitles();
+            }
+            catch(error){
+                console.log(error);
+            }
+            
+        }
+
+        async function fetchMetadata(){
+            try{
+                const url = "./";
+                
+                const response = await fetch(url+"metadata.json");
+                
+                const data = await response.json();
+                
+                return data;
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+</script>
+</html>
+
