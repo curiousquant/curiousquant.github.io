@@ -30,6 +30,7 @@
         }
         th {
             text-align: left;
+            text-decoration: none;
         }
         a:link {
           color: red;
@@ -72,7 +73,7 @@
                     
                     const title = document.getElementById("title"+i);
                     let html = "<tr id=title"+linkNum+"><th>"+i+"</th><th ><a href=\"/?text="+i+"\">"+metadata[metadata[i].text.id].text.title+"</a></th></tr>";
-    
+        
                     title.insertAdjacentHTML("afterend", html); 
                 }
             }
