@@ -62,7 +62,7 @@
                     
                     const title = document.getElementById("title"+i);
                     let html = "<li id="+"title"+linkNum+"><a href=\"/?text="+metadata[i].text.title+"\">"+metadata+"</a></li>";
-                    
+                    console.log(html);
                     //let html = "<li id=link"+linkNum+">"+i+"</li>";
                     title.insertAdjacentHTML("afterend", html); 
                 }
