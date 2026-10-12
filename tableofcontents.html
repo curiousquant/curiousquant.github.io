@@ -60,11 +60,11 @@
                 for (let i =0;i<length;i++) {
                     const linkNum=i+1;
                     
-                    const t = document.getElementById("t"+i);
+                    const title = document.getElementById("t"+i);
                     let html = "<li id="+t+linkNum+"><a href=\"/?text="+i+"\">"+i+"</a></li>";
                     
                     //let html = "<li id=link"+linkNum+">"+i+"</li>";
-                    t.insertAdjacentHTML("afterend", html); 
+                    title.insertAdjacentHTML("afterend", html); 
                 }
             }
             catch(error){
